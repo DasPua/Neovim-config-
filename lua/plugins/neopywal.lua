@@ -1,0 +1,91 @@
+-- return {
+-- 	"RedsXDD/neopywal.nvim",
+-- 	name = "neopywal",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	config = function()
+-- 		require("neopywal").setup({
+-- 			transparent_background = false,
+-- 			plugins = {
+-- 				all = false,
+-- 				treesitter = false,
+-- 				telescope = {},
+-- 				nvim_cmp = {},
+-- 				trouble = {},
+-- 				gitsigns = {},
+-- 				mini = {},
+-- 				which_key = {},
+-- 				dashboard = {},
+-- 				nvim_tree = {},
+-- 				lualine = {},
+-- 				noice = false,
+-- 				notify = false,
+-- 			},
+-- 			custom_highlights = function(colors)
+-- 				return {
+-- 					-- Normal text
+-- 					Normal = { fg = colors.foreground },
+-- 					NormalFloat = { fg = colors.foreground },
+-- 					-- UI chrome
+-- 					SignColumn = { fg = colors.foreground },
+-- 					LineNr = { fg = colors.foreground },
+-- 					CursorLineNr = { fg = colors.foreground },
+-- 					StatusLine = { fg = colors.foreground },
+-- 					StatusLineNC = { fg = colors.foreground },
+-- 					-- Floating windows and borders
+-- 					FloatBorder = { fg = colors.foreground },
+-- 					Pmenu = { fg = colors.foreground },
+-- 					PmenuSel = { fg = colors.background },
+-- 					-- Notifications
+-- 					NotifyERRORBody = { fg = colors.foreground },
+-- 					NotifyWARNBody = { fg = colors.foreground },
+-- 					NotifyINFOBody = { fg = colors.foreground },
+-- 					NotifyDEBUGBody = { fg = colors.foreground },
+-- 					NotifyTRACEBody = { fg = colors.foreground },
+-- 					NotifyBackground = { bg = colors.background },
+-- 					-- Noice
+-- 					NoiceMini = { fg = colors.foreground, bg = colors.background },
+-- 					NoiceCmdline = { fg = colors.foreground },
+-- 					-- Base vim syntax groups
+-- 					Keyword = { fg = colors.foreground },
+-- 					Statement = { fg = colors.foreground },
+-- 					Function = { fg = colors.foreground },
+-- 					Identifier = { fg = colors.foreground },
+-- 					Type = { fg = colors.foreground },
+-- 					String = { fg = colors.foreground },
+-- 					Comment = { fg = colors.foreground },
+-- 					Constant = { fg = colors.foreground },
+-- 					Special = { fg = colors.foreground },
+-- 					PreProc = { fg = colors.foreground },
+-- 					Number = { fg = colors.foreground },
+-- 					Boolean = { fg = colors.foreground },
+-- 					Operator = { fg = colors.foreground },
+-- 					Error = { fg = colors.foreground },
+-- 					-- Treesitter tokens
+-- 					["@keyword"] = { fg = colors.foreground },
+-- 					["@keyword.function"] = { fg = colors.foreground },
+-- 					["@keyword.modifier"] = { fg = colors.foreground, italic = false },
+-- 					["@function"] = { fg = colors.foreground },
+-- 					["@function.builtin"] = { fg = colors.foreground },
+-- 					["@type"] = { fg = colors.foreground },
+-- 					["@type.builtin"] = { fg = colors.foreground, italic = false },
+-- 					["@variable"] = { fg = colors.foreground },
+-- 					["@string"] = { fg = colors.foreground },
+-- 					["@comment"] = { fg = colors.foreground },
+-- 					["@constant"] = { fg = colors.foreground },
+-- 					["@constant.builtin"] = { fg = colors.foreground },
+-- 					["@operator"] = { fg = colors.foreground },
+-- 					["@punctuation"] = { fg = colors.foreground },
+-- 					["@property"] = { fg = colors.foreground },
+-- 					-- Diagnostics
+-- 					DiagnosticError = { fg = colors.foreground },
+-- 					DiagnosticWarn = { fg = colors.foreground },
+-- 					DiagnosticInfo = { fg = colors.foreground },
+-- 					DiagnosticHint = { fg = colors.foreground },
+-- 				}
+-- 			end,
+-- 		})
+-- 		vim.cmd.colorscheme("neopywal")
+-- 	end,
+-- }
+return {}
