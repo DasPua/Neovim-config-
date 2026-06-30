@@ -4,7 +4,7 @@ return {
 	priority = 1000,
 	config = function()
 		require("tokyonight").setup({
-			style = "storm", -- this is the variant
+			style = "night", -- this is the variant
 			transparent = false,
 			styles = {
 				sidebars = "dark",
