@@ -66,6 +66,21 @@ return {
 			desc = "Buffer Diagnostics (Trouble)",
 		},
 		{
+			"gR",
+			"<cmd>Trouble lsp_references toggle focus=true win.position=right<cr>",
+			desc = "References (Trouble)",
+		},
+		{
+			"gd",
+			"<cmd>Trouble lsp_definitions toggle focus=true<cr>",
+			desc = "Definitions (Trouble)",
+		},
+		{
+			"gi",
+			"<cmd>Trouble lsp_implementations toggle focus=true<cr>",
+			desc = "Implementations (Trouble)",
+		},
+		{
 			"<leader>cs",
 			"<cmd>Trouble symbols toggle<cr>",
 			desc = "Symbols (Trouble)",

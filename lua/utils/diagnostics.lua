@@ -17,9 +17,15 @@ M.setup = function()
 				[vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
 			},
 		},
-    underline = true,
-    update_in_insert = true,
-    severity_sort = true,
+		float = { -- <-- add this block
+			border = "rounded",
+			source = "if_many",
+			header = { " Diagnostics ", "DiagnosticHeader" },
+			prefix = "",
+		},
+		underline = true,
+		update_in_insert = true,
+		severity_sort = true,
 	})
 end
 
