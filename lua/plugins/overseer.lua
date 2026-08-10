@@ -1,7 +1,6 @@
 return {
 	"stevearc/overseer.nvim",
 	---@module "overseer"
-	---@type overseer.SetupOpts
 	opts = {
 		task_list = {
 			render = function(task)
@@ -24,23 +23,41 @@ return {
 		}, function(task_defn, util)
 			util.add_component(task_defn, { "on_output_quickfix", open = true })
 		end)
+		overseer.add_template_hook({
+			module = "^cmake$",
+		}, function(task_defn, util)
+			util.add_component(task_defn, { "on_output_quickfix", open = true })
+		end)
 	end,
+
 	keys = {
 		{ "<leader>rt", "<cmd>OverseerToggle<CR>", desc = "Toggle Overseer Tasks" },
 		{ "<leader>rr", "<cmd>OverseerRun<CR>", desc = "Run Task" },
+
 		{
 			"<leader>ra",
 			function()
 				local overseer = require("overseer")
 				local tasks = overseer.list_tasks()
+
 				if vim.tbl_isempty(tasks) then
 					vim.notify("No Overseer tasks", vim.log.levels.WARN)
 					return
 				end
+
+				local icons = {
+					SUCCESS = " ",
+					FAILURE = " ",
+					RUNNING = "󰑮 ",
+					CANCELED = "󰜺 ",
+					DISPATCHED = "󰑓 ",
+				}
+
 				vim.ui.select(tasks, {
-					prompt = "Select task",
+					prompt = "Task Actions",
 					format_item = function(task)
-						return string.format("%s [%s]", task.name, task.status)
+						local icon = icons[task.status] or "󰈔"
+						return string.format("%s  %s", icon, task.name)
 					end,
 				}, function(task)
 					if task then

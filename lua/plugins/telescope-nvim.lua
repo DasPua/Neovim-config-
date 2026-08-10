@@ -19,12 +19,23 @@ return {
 		local actions = require("telescope.actions") -- Make sure to require actions
 		telescope.setup({
 			defaults = {
+				winblend = 0,
+				border = true,
 				file_ignore_patterns = { "node_modules", ".git/" },
 				sorting_strategy = "ascending",
+				layout_strategy = "flex",
 				layout_config = {
 					prompt_position = "top",
+					flex = {
+						flip_columns = 120, -- Switch from horizontal to vertical at this width
+					},
 					horizontal = {
-						prompt_position = "top",
+						preview_cutoff = 40, -- Keep preview visible down to 40 columns
+						preview_width = 0.5,
+					},
+					vertical = {
+						preview_cutoff = 10, -- Keep preview visible down to 10 rows
+						preview_height = 0.5,
 					},
 				},
 				mappings = {

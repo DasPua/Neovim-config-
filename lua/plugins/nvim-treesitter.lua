@@ -22,6 +22,11 @@ return {
 			"vim",
 			"vimdoc",
 			"query",
+			"javascript",
+			"typescript",
+			"tsx",
+			"html",
+			"css",
 		})
 
 		vim.api.nvim_create_autocmd("FileType", {

@@ -1,13 +1,6 @@
 local M = {}
-M.on_attach = function(client, bufnr)
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-	vim.lsp.handlers["textDocument/signatureHelp"] =
-		vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-	if not client then
-		vim.notify("LSP on_attach missing client", vim.log.levels.WARN)
-		return
-	end
+M.on_attach = function(client, bufnr)
 	local map = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, {
@@ -16,17 +9,33 @@ M.on_attach = function(client, bufnr)
 			desc = desc,
 		})
 	end
-	-- LSP
-	map("gd", vim.lsp.buf.definition, "Goto Definition")
-	-- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-	-- map("gr", vim.lsp.buf.references, "Goto References")
-	map("gi", vim.lsp.buf.implementation, "Goto Implementation")
-	map("K", vim.lsp.buf.hover, "Hover Documentation")
+
+	local tb = require("telescope.builtin")
+
+	-- LSP Navigation (Telescope)
+	map("gd", tb.lsp_definitions, "Definition")
+	map("gD", vim.lsp.buf.declaration, "Declaration")
+	map("gi", tb.lsp_implementations, "Implementation")
+	map("gt", tb.lsp_type_definitions, "Type Definition")
+
 	map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-	map("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
+	map("gn", vim.lsp.buf.rename, "Rename")
+	map("K", function()
+		vim.lsp.buf.hover()
+	end, "Hover")
+
+	-- Symbol Search
+	map("<leader>ds", tb.lsp_document_symbols, "Document Symbols")
+	map("<leader>ws", tb.lsp_dynamic_workspace_symbols, "Workspace Symbols")
+
+	-- Formatting
 	map("<leader>cf", function()
-		require("conform").format({ async = true, bufnr = bufnr })
+		require("conform").format({
+			async = true,
+			bufnr = bufnr,
+		})
 	end, "Format Buffer")
+
 	-- Diagnostics
 	map("[d", function()
 		vim.diagnostic.jump({
@@ -34,13 +43,16 @@ M.on_attach = function(client, bufnr)
 			float = true,
 		})
 	end, "Previous Diagnostic")
+
 	map("]d", function()
 		vim.diagnostic.jump({
 			count = 1,
 			float = true,
 		})
 	end, "Next Diagnostic")
+
 	map("<leader>cd", vim.diagnostic.open_float, "Line Diagnostics")
+
 	-- Organize Imports
 	if client:supports_method("textDocument/codeAction") then
 		map("<leader>oi", function()
@@ -51,10 +63,14 @@ M.on_attach = function(client, bufnr)
 				},
 				apply = true,
 			})
+
 			vim.defer_fn(function()
-				require("conform").format({ bufnr = bufnr })
+				require("conform").format({
+					bufnr = bufnr,
+				})
 			end, 100)
 		end, "Organize Imports")
 	end
 end
+
 return M

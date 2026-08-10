@@ -33,7 +33,7 @@ return {
 					title = " Diagnostics ",
 					title_pos = "center",
 					position = { 0.5, 0.5 },
-					size = { width = 0.9, height = 0.9 },
+					size = { width = 0.5, height = 0.5 },
 					zindex = 200,
 				},
 				preview = {
@@ -55,40 +55,40 @@ return {
 		},
 	},
 	keys = {
+		-- {
+		-- 	"<leader>xx",
+		-- 	"<cmd>Trouble diagnostics toggle focus=true<cr>",
+		-- 	desc = "Workspace Diagnostics (Trouble)",
+		-- },
 		{
-			"<leader>xx",
-			"<cmd>Trouble diagnostics toggle focus=true<cr>",
-			desc = "Workspace Diagnostics (Trouble)",
-		},
-		{
-			"<leader>xw",
+			"<leader>xb",
 			"<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
 			desc = "Buffer Diagnostics (Trouble)",
 		},
-		{
-			"gR",
-			"<cmd>Trouble lsp_references toggle focus=true win.position=right<cr>",
-			desc = "References (Trouble)",
-		},
-		{
-			"gd",
-			"<cmd>Trouble lsp_definitions toggle focus=true<cr>",
-			desc = "Definitions (Trouble)",
-		},
-		{
-			"gi",
-			"<cmd>Trouble lsp_implementations toggle focus=true<cr>",
-			desc = "Implementations (Trouble)",
-		},
-		{
-			"<leader>cs",
-			"<cmd>Trouble symbols toggle<cr>",
-			desc = "Symbols (Trouble)",
-		},
-		{
-			"<leader>cl",
-			"<cmd>Trouble lsp toggle<cr>",
-			desc = "LSP Definitions (Trouble)",
-		},
+		-- {
+		-- 	"gR",
+		-- 	"<cmd>Trouble lsp_references toggle focus=true win.position=right<cr>",
+		-- 	desc = "References (Trouble)",
+		-- },
+		-- {
+		-- 	"gd",
+		-- 	"<cmd>Trouble lsp_definitions toggle focus=true<cr>",
+		-- 	desc = "Definitions (Trouble)",
+		-- },
+		-- {
+		-- 	"gi",
+		-- 	"<cmd>Trouble lsp_implementations toggle focus=true<cr>",
+		-- 	desc = "Implementations (Trouble)",
+		-- },
+		-- {
+		-- 	"<leader>cs",
+		-- 	"<cmd>Trouble symbols toggle<cr>",
+		-- 	desc = "Symbols (Trouble)",
+		-- },
+		-- {
+		-- 	"<leader>cl",
+		-- 	"<cmd>Trouble lsp toggle<cr>",
+		-- 	desc = "LSP Definitions (Trouble)",
+		-- },
 	},
 }

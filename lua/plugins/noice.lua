@@ -8,7 +8,7 @@ return {
 	},
 	config = function()
 		require("notify").setup({
-			background_colour = "#000000",
+			background_colour = "NormalFloat",
 			render = "compact",
 			timeout = 3000,
 			top_down = false,
