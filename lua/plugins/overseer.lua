@@ -17,34 +17,25 @@ return {
 		local overseer = require("overseer")
 		overseer.setup(opts)
 
-		-- inject quickfix output into any task generated from the make module
-		overseer.add_template_hook({
-			module = "^make$",
-		}, function(task_defn, util)
+		overseer.add_template_hook({ module = "^make$" }, function(task_defn, util)
 			util.add_component(task_defn, { "on_output_quickfix", open = true })
 		end)
-		overseer.add_template_hook({
-			module = "^cmake$",
-		}, function(task_defn, util)
+		overseer.add_template_hook({ module = "^cmake$" }, function(task_defn, util)
 			util.add_component(task_defn, { "on_output_quickfix", open = true })
 		end)
 	end,
-
 	keys = {
 		{ "<leader>rt", "<cmd>OverseerToggle<CR>", desc = "Toggle Overseer Tasks" },
 		{ "<leader>rr", "<cmd>OverseerRun<CR>", desc = "Run Task" },
-
 		{
 			"<leader>ra",
 			function()
 				local overseer = require("overseer")
 				local tasks = overseer.list_tasks()
-
 				if vim.tbl_isempty(tasks) then
 					vim.notify("No Overseer tasks", vim.log.levels.WARN)
 					return
 				end
-
 				local icons = {
 					SUCCESS = " ",
 					FAILURE = " ",
@@ -52,7 +43,6 @@ return {
 					CANCELED = "󰜺 ",
 					DISPATCHED = "󰑓 ",
 				}
-
 				vim.ui.select(tasks, {
 					prompt = "Task Actions",
 					format_item = function(task)
@@ -66,6 +56,38 @@ return {
 				end)
 			end,
 			desc = "Task Actions",
+		},
+		{
+			"<leader>rd",
+			function()
+				local overseer = require("overseer")
+				local tasks = overseer.list_tasks({ status = { "SUCCESS", "FAILURE", "CANCELED" } })
+				if vim.tbl_isempty(tasks) then
+					vim.notify("No finished tasks to dispose", vim.log.levels.INFO)
+					return
+				end
+				for _, task in ipairs(tasks) do
+					overseer.run_action(task, "dispose")
+				end
+				vim.notify(("Disposed %d finished tasks"):format(#tasks))
+			end,
+			desc = "Dispose finished tasks",
+		},
+		{
+			"<leader>rR",
+			function()
+				local overseer = require("overseer")
+				local tasks = overseer.list_tasks({ status = "FAILURE" })
+				if vim.tbl_isempty(tasks) then
+					vim.notify("No failed tasks to restart", vim.log.levels.INFO)
+					return
+				end
+				for _, task in ipairs(tasks) do
+					overseer.run_action(task, "restart")
+				end
+				vim.notify(("Restarted %d failed tasks"):format(#tasks))
+			end,
+			desc = "Restart failed tasks",
 		},
 	},
 }
