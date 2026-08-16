@@ -1,0 +1,30 @@
+New Language Setup Checklist
+=============================
+
+1. Find your tools
+   - LSP (errors, hover, go-to-def)
+   - Formatter (auto-format on save)
+   - Linter (style/logic warnings, optional if LSP covers it)
+   - Reference: https://mason-registry.dev
+
+2. Install via Mason
+   :MasonInstall <lsp> <formatter> <linter>
+
+3. Wire up LSP
+   - Create lua/servers/<language>.lua
+   - Add vim.lsp.config.<lspname> = { cmd, filetypes, root_markers, on_attach, settings }
+   - Add vim.lsp.enable("<lspname>") in lua/servers/init.lua
+   - Add "<lspname>" to ensure_installed in lua/plugins/nvim-lspconfig.lua
+
+4. Wire up Formatter
+   - Add to formatters_by_ft in lua/plugins/conform.lua
+   - <filetype> = { "<formatter>" }
+
+5. Wire up Linter (if needed)
+   - Add to linters_by_ft in lua/plugins/nvim-lint.lua
+   - <filetype> = { "<linter>" }
+
+6. Verify
+   - Open a file of that language
+   - :LspInfo      → LSP attached?
+   - :ConformInfo  → formatter found?

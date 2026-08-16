@@ -30,6 +30,9 @@ return {
 				"lua_ls",
 				"clangd",
 				"pyright",
+				"jsonls",
+				"vtsls",
+				"tailwindcss",
 			},
 			automatic_enable = false, -- also here to be safe
 		})

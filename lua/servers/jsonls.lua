@@ -1,18 +1,26 @@
 local on_attach = require("utils.lsp").on_attach
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-vim.lsp.config.pyright = {
-	cmd = { "pyright-langserver", "--stdio" },
+vim.lsp.config.jsonls = {
+	cmd = { "vscode-json-language-server", "--stdio" },
 
-	filetypes = { "python" },
+	filetypes = {
+		"json",
+		"jsonc",
+	},
 
 	root_markers = {
 		".git",
-		"pyproject.toml",
-		"setup.py",
-		"requirements.txt",
 	},
 
 	on_attach = on_attach,
 	capabilities = capabilities,
+
+	settings = {
+		json = {
+			validate = {
+				enable = true,
+			},
+		},
+	},
 }

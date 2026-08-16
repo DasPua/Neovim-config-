@@ -16,6 +16,8 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 vim.keymap.set("n", "<leader>rc", "<Cmd>e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
+-- Diagnostics
+vim.keymap.set("n", "<leader>xw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace Diagnostics" })
 
 -- Plugin Keymaps
 vim.api.nvim_create_autocmd("User", {

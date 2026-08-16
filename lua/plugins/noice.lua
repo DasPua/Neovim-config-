@@ -8,12 +8,11 @@ return {
 	},
 	config = function()
 		require("notify").setup({
-			background_colour = "#000000",
+			background_colour = "NormalFloat",
 			render = "compact",
 			timeout = 3000,
 			top_down = false,
 		})
-
 		require("noice").setup({
 			presets = {
 				command_palette = true,
@@ -54,6 +53,17 @@ return {
 			routes = {
 				{
 					filter = { event = "msg_show", kind = "", find = "written" },
+					opts = { skip = true },
+				},
+				{
+					filter = {
+						event = "lsp",
+						kind = "progress",
+						cond = function(message)
+							local client = vim.tbl_get(message.opts, "progress", "client")
+							return client == "pyright"
+						end,
+					},
 					opts = { skip = true },
 				},
 			},

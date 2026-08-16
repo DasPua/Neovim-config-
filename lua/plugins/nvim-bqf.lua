@@ -4,9 +4,7 @@ return {
 	dependencies = {
 		{
 			"junegunn/fzf",
-			build = function()
-				vim.fn["fzf#install"]()
-			end,
+			build = "./install --all",
 		},
 		-- nvim-treesitter is likely already a dependency elsewhere in your config;
 		-- only add it here if it isn't installed yet

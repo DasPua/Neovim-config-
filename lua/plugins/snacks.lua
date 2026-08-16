@@ -4,7 +4,12 @@ return {
 	lazy = false,
 	opts = {
 		-- Picker
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			layout = {
+				preset = "dropdown",
+			},
+		},
 		-- File explorer (replaces nvim-tree)
 		explorer = {
 			enabled = true,

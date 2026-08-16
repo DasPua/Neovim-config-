@@ -1,16 +1,22 @@
 local on_attach = require("utils.lsp").on_attach
+
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-vim.lsp.config.pyright = {
-	cmd = { "pyright-langserver", "--stdio" },
+vim.lsp.config.vtsls = {
+	cmd = { "vtsls", "--stdio" },
 
-	filetypes = { "python" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+	},
 
 	root_markers = {
+		"package.json",
+		"tsconfig.json",
+		"jsconfig.json",
 		".git",
-		"pyproject.toml",
-		"setup.py",
-		"requirements.txt",
 	},
 
 	on_attach = on_attach,
